@@ -125,7 +125,7 @@ func (c *ClientSsdp) Stop() {
 		c.exitReadWaitGroup.Wait()
 		c.socket = nil
 	}
-	c.logger.Tracef("Stop exiting")
+	c.logger.Debugf("Stop exiting")
 }
 
 // Sends out 1 M-SEARCH request for the specified target.

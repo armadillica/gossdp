@@ -111,7 +111,7 @@ import (
 
 // a small interface to intercept all of my logs
 type LoggerInterface interface {
-	Tracef(fmt string, args ...interface{})
+	Debugf(fmt string, args ...interface{})
 	Infof(fmt string, args ...interface{})
 	Warnf(fmt string, args ...interface{})
 	Errorf(fmt string, args ...interface{})
@@ -120,7 +120,7 @@ type LoggerInterface interface {
 // a default implementation of the LoggerInterface, simply using the 'log' library
 type DefaultLogger struct{}
 
-func (l DefaultLogger) Tracef(fmt string, args ...interface{}) {
+func (l DefaultLogger) Debugf(fmt string, args ...interface{}) {
 	log.Printf(fmt+"\n", args...)
 }
 
@@ -632,7 +632,7 @@ func (s *Ssdp) Stop() {
 		s.exitReadWaitGroup.Wait()
 		//s.rawSocket = nil
 	}
-	s.logger.Tracef("Stop exiting")
+	s.logger.Debugf("Stop exiting")
 }
 
 func (s *Ssdp) advertiseClosed() {
