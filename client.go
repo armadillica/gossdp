@@ -87,7 +87,10 @@ func (c *ClientSsdp) socketReader() {
 	for {
 		n, src, err := c.socket.ReadFrom(readBytes)
 		if err != nil {
-			c.logger.Warnf("Error reading from socket: %v", err)
+			if c.isRunning {
+				// An error is normal when we're shutting down, so only log when not shutting down.
+				c.logger.Warnf("Error reading from socket: %v", err)
+			}
 			return
 		}
 		if n > 0 {
